@@ -247,14 +247,14 @@ export class ReportesService {
         
     }
 
-    async estadisticaSedeTotal(data?){
+    async estadisticaSedeTotal(date?){
         const resumen = await this.getEstablecimientos()
-        const cursos = await this.getCursos('2022-12-31')
-        const asignaturas = await this.getAsignaturas('2022-12-31')
-        const cursosAsignaturas = await this.getCursoAsignaturas('2022-12-31')
-        const asignaturasProgramas = await this.getAsignaturasProgramas('2022-12-31')
-        const asignaturaContenido = await this.getAsignaturasContenido('2022-12-31')
-        const actividades = await this.getActividades('2022-12-31')
+        const cursos = await this.getCursos(date)
+        const asignaturas = await this.getAsignaturas(date)
+        const cursosAsignaturas = await this.getCursoAsignaturas(date)
+        const asignaturasProgramas = await this.getAsignaturasProgramas(date)
+        const asignaturaContenido = await this.getAsignaturasContenido(date)
+        const actividades = await this.getActividades(date)
         
         const workbook = new ExcelJS.Workbook()
         const fileName = `Estadistica-sede-totales.xlsx`

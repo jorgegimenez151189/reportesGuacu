@@ -246,11 +246,13 @@ export class ReportesController {
         }
     }
 
-    @Get('estadisticasSede')
-    async estadisticasSedes(){
+    @Get('estadisticasSede/:date')
+    async estadisticasSedes(
+        @Param('date') date: string
+    ){
         Logger.debug('GET DE REPORTES - ESTADISTICAS')
         try {
-            const response = await this.reportService.estadisticaSedeTotal()
+            const response = await this.reportService.estadisticaSedeTotal(date)
             return response
         } catch (error) {
             Logger.error('ERROR', error)
