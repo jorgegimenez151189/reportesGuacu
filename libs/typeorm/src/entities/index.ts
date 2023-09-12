@@ -1,3 +1,6 @@
 export * from './establecimiento_sede.entity'
 export * from './curso.entity'
 export * from './asignaturas.entity'
+export * from './actividad.entity'  
+export * from './unidad_tema.entity'
+export * from './tema_contenido_repositorio.entity'

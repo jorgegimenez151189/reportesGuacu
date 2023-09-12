@@ -1,5 +1,7 @@
-import { Entity, Column, Index, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { Entity, Column, Index, PrimaryColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
 import { EstablecimientoSede } from './establecimiento_sede.entity'
+import { Curso } from './curso.entity'
+import { Actividad } from './actividad.entity'
 
 @Entity({name:'asignatura_curso'})
 export class AsignaturaCurso {
@@ -41,6 +43,10 @@ export class AsignaturaCurso {
     programa_id: number
   @JoinColumn({ name: 'sedeid' })
     sede: EstablecimientoSede;
-
+  @JoinColumn({ name: 'curso_id' })
+    curso: Curso;
+  @OneToMany(() => Actividad, actividad =>  actividad.asignaturacurso_id)
+  @JoinColumn({ name: 'asignaturacurso_id' }) // Esto especifica la columna de unión
+    actividades: Actividad[];
 
 }

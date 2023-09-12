@@ -4,7 +4,10 @@ https://docs.nestjs.com/modules
 
 import { DynamicModule, Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { AsignaturaCurso, Curso, EstablecimientoSede } from './entities'
+import { AsignaturaCurso, Curso, EstablecimientoSede, TemaContenidoRepositorio, UnidadTema } from './entities'
+import { Actividad } from './entities/actividad.entity'
+import { Unidad } from './entities/unidad.entity'
+import { Programa } from './entities/programa.entity'
 @Module({})
 export class PostgresModule {
   static forRoot (opt: any):DynamicModule {
@@ -21,7 +24,12 @@ export class PostgresModule {
           entities: [
             EstablecimientoSede,
             Curso,
-            AsignaturaCurso
+            AsignaturaCurso,
+            Actividad,
+            Unidad,
+            UnidadTema,
+            TemaContenidoRepositorio,
+            Programa
           ],
           synchronize: false
         })],

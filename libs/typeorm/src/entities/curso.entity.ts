@@ -1,5 +1,6 @@
-import { Entity, Column, Index, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { Entity, Column, Index, PrimaryColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
 import { EstablecimientoSede } from './establecimiento_sede.entity'
+import { AsignaturaCurso } from './asignaturas.entity'
 
 @Entity({name:'curso'})
 // @Index(['client_id', 'operadora', 'date'], { unique: true })
@@ -38,5 +39,7 @@ export class Curso {
     attendance_id: number
   @JoinColumn({ name: 'sedeid' })
     sede: EstablecimientoSede;
+  @OneToMany(() => AsignaturaCurso, asignaturaCurso => asignaturaCurso.curso_id)
+  asignaturaCurso: AsignaturaCurso[];
 
 }

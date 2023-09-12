@@ -12,7 +12,7 @@ export class ReportesController {
     ){
         Logger.debug('GET DE REPORTES - CURSOS POR FECHA')
         try {
-            const response = await this.reportService.getCursosRange(range)
+            const response = await this.reportService.getCursos(range)
             return response
         } catch (error) {
             throw new HttpException({
@@ -56,9 +56,169 @@ export class ReportesController {
     ){
         Logger.debug('GET DE REPORTES - ASIGNATURAS')
         try {
-            const response = await this.reportService.getAsignaturasRange(range)
+            const response = await this.reportService.getAsignaturas(range)
             return response
         } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('cursoAsignatura')
+    async cursoAsignatura(){
+        Logger.debug('GET DE REPORTES - CURSOS Y ASIGNATURAS')
+        try {
+            const response = await this.reportService.getCursoAsignaturas()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('cursoAsignatura/:range')
+    async cursoAsignaturaRange(
+        @Param('range') range: string,
+    ){
+        Logger.debug('GET DE REPORTES - CURSOS Y ASIGNATURAS - RANGO')
+        try {
+            const response = await this.reportService.getCursoAsignaturas(range)
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('asignaturaProgramas/')
+    async asignaturaProgramas(){
+        Logger.debug('GET DE REPORTES - ASIGNATURAS CON PROGRAMAS')
+        try {
+            const response = await this.reportService.getAsignaturasProgramas()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('asignaturaProgramas/:range')
+    async asignaturaProgramasRange(
+        @Param('range') range: string,
+    ){
+        Logger.debug('GET DE REPORTES - ASIGNATURAS CON PROGRAMAS')
+        try {
+            const response = await this.reportService.getAsignaturasProgramas(range)
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('asignaturaContenido')
+    async asignaturaContenido(){
+        Logger.debug('GET DE REPORTES - ASIGNATURAS CON CONTENIDO')
+        try {
+            const response = await this.reportService.getAsignaturasContenido()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('asignaturaContenido/:range')
+    async asignaturaContenidoRange(
+        @Param('range') range: string,
+    ){
+        Logger.debug('GET DE REPORTES - ASIGNATURAS CON CONTENIDO')
+        try {
+            const response = await this.reportService.getAsignaturasContenido(range)
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('actividades')
+    async actividades(){
+        Logger.debug('GET DE REPORTES - ACTIVIDADES')
+        try {
+            const response = await this.reportService.getActividades()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('actividades/:range')
+    async actividadesRange(
+        @Param('range') range: string 
+    ){
+        Logger.debug('GET DE REPORTES - ACTIVIDADES')
+        try {
+            const response = await this.reportService.getActividades(range)
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('establecimientos')
+    async establecimientos(
+        @Param('range') range: string 
+    ){
+        Logger.debug('GET DE REPORTES - ESTABLECIMIENTOS')
+        try {
+            const response = await this.reportService.getActividades()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+    }
+
+    @Get('estadisticasSede')
+    async estadisticasSedes(){
+        Logger.debug('GET DE REPORTES - ESTADISTICAS')
+        try {
+            const response = await this.reportService.estadisticaSedeTotal()
+            return response
+        } catch (error) {
+            Logger.error('ERROR', error)
             throw new HttpException({
                 status: HttpStatus.BAD_REQUEST,
                 error: error
