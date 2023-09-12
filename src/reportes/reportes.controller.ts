@@ -1,11 +1,46 @@
-import { Controller, Get, HttpException, HttpStatus, Logger, Param } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Logger, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ReportesService } from './reportes.service';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 
 @Controller('reportes')
 export class ReportesController {
     constructor(
         private reportService: ReportesService,
     ){}
+
+    @UseInterceptors(
+        FileInterceptor(
+            'file',
+            {
+                storage: diskStorage({
+                    destination: './uploads',
+                    filename: function(req, file, cb){
+                        cb(null, file.originalname + '_' + Date.now() + '.pdf')
+                    }
+                })
+            }
+        )
+    )
+
+    @Post('file')
+    async uploadFile(
+        @UploadedFile() file : Express.Multer.File
+    ){
+        Logger.debug('Ingreso')
+        try {
+            return{
+                msg: `Archivo ${file.filename} cargado corretamente`
+            }
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error
+            }, HttpStatus.BAD_REQUEST)
+        }
+        
+    }
+
     @Get('cursos/:range')
     async crusosRange(
         @Param('range') range: string,
