@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 
 async function main() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(parseInt(process.env.PORT));
+  const server = await app.listen(parseInt(process.env.PORT));
+  server.setTimeout(900000)
 }
 main();
